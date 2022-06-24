@@ -3,9 +3,9 @@ import json
 SIGN_NEW_DATA = '+'
 SIGN_OLD_DATA = '-'
 
-with open('/gendiff/comprasion/file1.json', 'r') as file:
+with open('/Users/mac/python-project-lvl2/python-project-lvl2/gendiff/comprasion/file1.json', 'r') as file:
   file1 = json.load(file)
-with open('/gendiff/comprasion/file2.json', 'r') as file:
+with open('/Users/mac/python-project-lvl2/python-project-lvl2/gendiff/comprasion/file2.json', 'r') as file:
   file2 = json.load(file)
 
 def generate_diff(file1, file2):
