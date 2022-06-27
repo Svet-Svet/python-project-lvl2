@@ -4,6 +4,15 @@ install:
 test:
 	poetry run pytest
 
+run:
+	poetry run gendiff
+
+publish:
+	poetry publish --dry-run
+
+package-install:
+	python3 -m pip install --user dist/*.whl
+
 test-coverage:
 	poetry run pytest --cov=hexlet_python_package --cov-report xml
 
@@ -13,9 +22,6 @@ lint:
 selfcheck:
 	poetry check
 
-check: selfcheck test lint
-
-build: check
+build:
 	poetry build
 
-.PHONY: install test lint selfcheck check build
