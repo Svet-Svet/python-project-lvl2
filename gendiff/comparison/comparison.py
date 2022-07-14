@@ -2,29 +2,30 @@ import json
 SIGN_NEW_DATA = '+'
 SIGN_OLD_DATA = '-'
 
+
+def value_to_string(value):
+  if isinstance(value, bool):
+    return str(value).lower()
+  return value
+
 def generate_diff(file1, file2):
   merged_dict = file1 | file2
   sorted_tuple = dict(sorted(merged_dict.items(), key=lambda x: x[0]))
-
-  def dict_with_lowercase(sorted_tuple):
-    for values in sorted_tuple.values():
-      if type(values) == bool:
-        values = str(values).lower()
-
-  dict_with_lowercase(sorted_tuple)
   result = ''
-  for keys in sorted_tuple.keys():
-    if keys not in file1.keys():
-      result = f'{result}{SIGN_NEW_DATA} {keys}: {file2.get(keys)}\n'
+  for key in sorted_tuple.keys():
+    value1 = value_to_string(file1.get(key))
+    value2 = value_to_string(file2.get(key))
+    if key not in file1.keys():
+      result = f'{result}{SIGN_NEW_DATA} {key}: {value2}\n'
     else:
-      if keys not in file2.keys():
-        result = f'{result}{SIGN_OLD_DATA} {keys}: {file1.get(keys)}\n'
+      if key not in file2.keys():
+        result = f'{result}{SIGN_OLD_DATA} {key}: {value1}\n'
       else:
-        if file1.get(keys) == file2.get(keys):
-          result = f'{result}  {keys}: {file1.get(keys)}\n'
+        if file1.get(key) == file2.get(key):
+          result = f'{result}  {key}: {value1}\n'
         else:
-          result = f'{result}{SIGN_OLD_DATA} {keys}: {file1.get(keys)}\n'
-          result = f'{result}{SIGN_NEW_DATA} {keys}: {file2.get(keys)}\n'
+          result = f'{result}{SIGN_OLD_DATA} {key}: {value1}\n'
+          result = f'{result}{SIGN_NEW_DATA} {key}: {value2}\n'
   print(f'{{\n{result}}}')
 
 

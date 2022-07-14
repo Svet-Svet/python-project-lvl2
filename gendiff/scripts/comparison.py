@@ -3,7 +3,7 @@ import os
 import sys
 import json
 
-from gendiff.comparison.comparison import generate_diff
+from gendiff import generate_diff
 
 
 #def abs_path('/Users/mac/python-project-lvl2/python-project-lvl2/gendiff/comparison/comparison.py'):
