@@ -12,7 +12,6 @@ python = "^3.9"
 
 [tool.poetry.scripts]
 gendiff = "gendiff.scripts.gendiff:main"
-comparison = "gendiff.scripts.comparison:main"
 
 [tool.poetry.dev-dependencies]
 
