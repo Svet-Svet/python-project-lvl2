@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
-import os
-import sys
+# import os
+# import sys
 import json
 import argparse
 
 from gendiff import generate_diff
 
 
-#def abs_path('/Users/mac/python-project-lvl2/python-project-lvl2/gendiff/comparison/comparison.py'):
+# def abs_path('/Users/mac/python-project-lvl2/python-project-lvl2/gendiff/comparison/comparison.py'):
 #    return os.path.join(os.path.dirname(os.path.abspath(__file__)), '/Users/mac/python-project-lvl2/python-project-lvl2/gendiff/comparison/comparison.py')
 
 def main():
