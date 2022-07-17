@@ -1,15 +1,9 @@
 #!/usr/bin/env python
-
-# import os
-# import sys
 import json
 import argparse
 
 from gendiff import generate_diff
 
-
-# def abs_path('/Users/mac/python-project-lvl2/python-project-lvl2/gendiff/comparison/comparison.py'):
-#    return os.path.join(os.path.dirname(os.path.abspath(__file__)), '/Users/mac/python-project-lvl2/python-project-lvl2/gendiff/comparison/comparison.py')
 
 def main():
     parser = argparse.ArgumentParser(description='Compares two configuration files and shows a difference.')
@@ -27,6 +21,7 @@ def main():
 
     generate_diff(file1, file2)
 
+
 if __name__ == '__main__':
     main()
-    #print(list(map(abs_path, sys.argv[1:0])))
+    # print(list(map(abs_path, sys.argv[1:0])))

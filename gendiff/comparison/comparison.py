@@ -7,6 +7,7 @@ def value_to_string(value):
     return str(value).lower()
   return value
 
+
 def generate_diff(file1, file2):
   merged_dict = file1 | file2
   sorted_tuple = dict(sorted(merged_dict.items(), key=lambda x: x[0]))
