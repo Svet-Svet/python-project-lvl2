@@ -1,15 +1,13 @@
 from gendiff import generate_diff
 
 
-file1 = {
-  "timeout": 50
-}
-
-file2 = {
-    "timeout": 50
-}
-
-
 def test_gendiff_good():
-    assert generate_diff("tests/fixtures/file1.json", "tests/fixtures/file2.json") == '{  timeout: 50 }'
+    assert generate_diff("tests/fixtures/file1.json", "tests/fixtures/file2.json") == '''{
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 20
+  + verbose: true
+}'''
 
