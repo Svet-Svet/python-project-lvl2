@@ -2,7 +2,7 @@
 import json
 import argparse
 
-from gendiff import generate_diff
+import gendiff
 
 
 def main():
@@ -16,12 +16,12 @@ def main():
     args = parser.parse_args()
     print(args.first_file)
     print(args.second_file)
-    with open(args.first_file, 'r') as file:
-        file1 = json.load(file)
-    with open(args.second_file, 'r') as file:
-        file2 = json.load(file)
+    # with open(args.first_file, 'r') as file:
+    #     file1 = json.load(file)
+    # with open(args.second_file, 'r') as file:
+    #     file2 = json.load(file)
 
-    generate_diff(file1, file2)
+    gendiff.generate_diff(args.first_file, args.second_file)
 
 
 if __name__ == '__main__':

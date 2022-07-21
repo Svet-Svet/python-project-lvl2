@@ -1,8 +1,8 @@
-from gendiff import generate_diff
+import gendiff
 
 
 def test_gendiff_good():
-    assert generate_diff("tests/fixtures/file1.json", "tests/fixtures/file2.json") == '''{
+    assert gendiff.generate_diff("tests/fixtures/file1.json", "tests/fixtures/file2.json") == '''{
   - follow: false
     host: hexlet.io
   - proxy: 123.234.53.22
@@ -10,4 +10,3 @@ def test_gendiff_good():
   + timeout: 20
   + verbose: true
 }'''
-

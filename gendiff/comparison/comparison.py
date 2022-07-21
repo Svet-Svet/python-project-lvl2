@@ -1,3 +1,5 @@
+import json
+
 SIGN_NEW_DATA = '+'
 SIGN_OLD_DATA = '-'
 
@@ -9,6 +11,10 @@ def value_to_string(value):
 
 
 def generate_diff(file1, file2):
+    with open(file1, 'r') as file:
+        file1 = json.load(file)
+    with open(file2, 'r') as file:
+        file2 = json.load(file)
     merged_dict = file1 | file2
     sorted_tuple = dict(sorted(merged_dict.items(), key=lambda x: x[0]))
     result = ''
@@ -27,3 +33,4 @@ def generate_diff(file1, file2):
                     result = f'{result}{SIGN_OLD_DATA} {key}: {value1}\n'
                     result = f'{result}{SIGN_NEW_DATA} {key}: {value2}\n'
     print(f'{{\n{result}}}')
+    return result
