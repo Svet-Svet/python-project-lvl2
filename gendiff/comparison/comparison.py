@@ -33,4 +33,4 @@ def generate_diff(file1, file2):
                     result = f'{result}{SIGN_OLD_DATA} {key}: {value1}\n'
                     result = f'{result}{SIGN_NEW_DATA} {key}: {value2}\n'
     print(f'{{\n{result}}}')
-    return result
+    return f'{{\n{result}}}'
