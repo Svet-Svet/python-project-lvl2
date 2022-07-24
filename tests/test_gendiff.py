@@ -10,3 +10,8 @@ def test_gendiff_good():
   + timeout: 20
   + verbose: true
 }'''
+
+
+# def test_gendiff_with_file(file):
+#     with open(file, 'r') as file:
+#         file1 = json.load(file)

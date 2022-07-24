@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import json
 import argparse
 
 import gendiff
