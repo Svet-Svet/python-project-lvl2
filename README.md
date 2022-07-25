@@ -5,9 +5,16 @@
 
 # python-project-lvl2
 
-This repository is my second studies project in Hexlet. This is a library for comparing two JSON-files
+This repository is my second studies project in Hexlet. This is a library for comparing two JSON-files or two YAML-files.
 
 
 ### How it works
 
+This is a comparison of two JSON-files:
+
+
 [![asciicast](https://asciinema.org/a/gyyPaATYjYpAH46gSa3AtkLaQ.svg)](https://asciinema.org/a/gyyPaATYjYpAH46gSa3AtkLaQ)
+
+This is a comparison of two YAML-files:
+
+[![asciicast](https://asciinema.org/a/z6GXRTCjT4tBGLcBGriBi1PKX.svg)](https://asciinema.org/a/z6GXRTCjT4tBGLcBGriBi1PKX)

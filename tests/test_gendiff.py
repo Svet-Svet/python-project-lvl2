@@ -2,7 +2,7 @@ import gendiff
 
 
 def test_gendiff_json():
-    assert gendiff.generate_diff("tests/fixtures/file1.json", "tests/fixtures/file2.json") == '''{
+    assert gendiff.generate_diff_json("tests/fixtures/file1.json", "tests/fixtures/file2.json") == '''{
   - follow: false
     host: hexlet.io
   - proxy: 123.234.53.22

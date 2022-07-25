@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import argparse
+import os.path
 
 import gendiff
 
@@ -15,12 +16,10 @@ def main():
     args = parser.parse_args()
     print(args.first_file)
     print(args.second_file)
-    # with open(args.first_file, 'r') as file:
-    #     file1 = json.load(file)
-    # with open(args.second_file, 'r') as file:
-    #     file2 = json.load(file)
-
-    gendiff.generate_diff(args.first_file, args.second_file)
+    if os.path.splitext(args.first_file[-4:]) == 'json':
+        gendiff.generate_diff_json(args.first_file, args.second_file)
+    else:
+        gendiff.generate_diff_yaml(args.first_file, args.second_file)
 
 
 if __name__ == '__main__':

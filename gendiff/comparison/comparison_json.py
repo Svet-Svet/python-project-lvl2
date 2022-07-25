@@ -1,12 +1,12 @@
-import yaml
+import json
 from gendiff.comparison.comparison import generate_diff
 
 
-def generate_diff_yaml(file1, file2):
+def generate_diff_json(file1, file2):
     with open(file1, 'r') as file:
-        file1 = yaml.safe_load(file)
+        file1 = json.load(file)
     with open(file2, 'r') as file:
-        file2 = yaml.safe_load(file)
+        file2 = json.load(file)
 
     merged_dict = file1 | file2
 
