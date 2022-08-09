@@ -2,7 +2,8 @@
 import argparse
 import os.path
 
-import gendiff
+from gendiff.comparison.formatters.comparison_yaml import generate_diff_yaml
+from gendiff.comparison.formatters.comparison_json import generate_diff_json
 
 
 def main():
@@ -17,9 +18,9 @@ def main():
     print(args.first_file)
     print(args.second_file)
     if os.path.splitext(args.first_file[-4:]) == 'json':
-        gendiff.generate_diff_json(args.first_file, args.second_file)
+        generate_diff_json(args.first_file, args.second_file)
     else:
-        gendiff.generate_diff_yaml(args.first_file, args.second_file)
+        generate_diff_yaml(args.first_file, args.second_file)
 
 
 if __name__ == '__main__':

@@ -1,3 +1,6 @@
+# from gendiff.comparison.formatters.get_format import get_format
+from gendiff.comparison.formatters.stylish import stylish
+
 SIGN_NEW_DATA = '+'
 SIGN_OLD_DATA = '-'
 
@@ -8,22 +11,45 @@ def value_to_string(value):
     return value
 
 
-def generate_diff(merged_dict, file1, file2):
+def generate_diff(file1, file2, format='stylish'):
+    merged_dict = file1 | file2
     sorted_tuple = dict(sorted(merged_dict.items(), key=lambda x: x[0]))
     result = ''
     for key in sorted_tuple.keys():
         value1 = value_to_string(file1.get(key))
         value2 = value_to_string(file2.get(key))
         if key not in file1.keys():
-            result = f'{result}  {SIGN_NEW_DATA} {key}: {value2}\n'
+            result = f'{result}  {SIGN_NEW_DATA} {key}: {stylish(value2)}\n'
         else:
             if key not in file2.keys():
-                result = f'{result}  {SIGN_OLD_DATA} {key}: {value1}\n'
+                result = f'{result}  {SIGN_OLD_DATA} {key}: {stylish(value1)}\n'
             else:
                 if file1.get(key) == file2.get(key):
-                    result = f'{result}    {key}: {value1}\n'
+                    result = f'{result}    {key}: {stylish(value1)}\n'
                 else:
-                    result = f'{result}  {SIGN_OLD_DATA} {key}: {value1}\n'
-                    result = f'{result}  {SIGN_NEW_DATA} {key}: {value2}\n'
+                    result = f'{result}  {SIGN_OLD_DATA} {key}: {stylish(value1)}\n'
+                    result = f'{result}  {SIGN_NEW_DATA} {key}: {stylish(value1)}\n'
     print(f'{{\n{result}}}')
     return f'{{\n{result}}}'
+
+
+# def generate_diff(file1, file2):
+#     merged_dict = file1 | file2
+#     sorted_tuple = dict(sorted(merged_dict.items(), key=lambda x: x[0]))
+#     result = ''
+#     for key in sorted_tuple.keys():
+#         value1 = value_to_string(file1.get(key))
+#         value2 = value_to_string(file2.get(key))
+#         if key not in file1.keys():
+#             result = f'{result}  {SIGN_NEW_DATA} {key}: {value2}\n'
+#         else:
+#             if key not in file2.keys():
+#                 result = f'{result}  {SIGN_OLD_DATA} {key}: {value1}\n'
+#             else:
+#                 if file1.get(key) == file2.get(key):
+#                     result = f'{result}    {key}: {value1}\n'
+#                 else:
+#                     result = f'{result}  {SIGN_OLD_DATA} {key}: {value1}\n'
+#                     result = f'{result}  {SIGN_NEW_DATA} {key}: {value2}\n'
+#     print(f'{{\n{result}}}')
+#     return f'{{\n{result}}}'
