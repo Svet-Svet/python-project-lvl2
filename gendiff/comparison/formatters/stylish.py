@@ -19,11 +19,10 @@ def stylish(graph, replacer=' ', spaces_count=3, _deep=0):
     count_spaces = replacer * spaces_count * (_deep + 1)
     quote_spaces = replacer * spaces_count * _deep
     for node in graph:
-        if isinstance(node[2], dict):
-            result += stylish(node[2])
+        if isinstance(node, list):
+            result += stylish(node, replacer, spaces_count, _deep + 1)
             # result += f'\n{count_spaces}{key}: {stylish(vallue, replacer, spaces_count, _deep + 1)}
         else:
-            # out += '\n' + ' '.join(node)
-            result += f'\n {node}'
-    return result
+            result += f'{{\n{count_spaces}{node}: {(node)}}}'
+    return f'{parenthesis_start}{result}\n{quote_spaces}{parenthesis_end}'
 
