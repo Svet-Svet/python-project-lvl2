@@ -12,17 +12,49 @@
 #     return str(node)
 
 
-def stylish(graph, replacer=' ', spaces_count=3, _deep=0):
+# АЛЬТЕРНАТИВНАЯ ФУНКЦИЯ
+# def stylish(graph, replacer=' ', spaces_count=1, _deep=0):
+#     result = ''
+#     parenthesis_start = "{"
+#     parenthesis_end = "}"
+#     count_spaces = replacer * spaces_count * (_deep + 1)
+#     quote_spaces = replacer * spaces_count * _deep
+#     for node in graph:
+#         if isinstance(node, list):
+#             result += stylish(node, replacer, spaces_count, _deep + 1)
+#             # result += f'\n{count_spaces}{key}: {stylish(vallue, replacer, spaces_count, _deep + 1)}
+#         else:
+#             for key, val in sorted(node.items()):
+#                 # if node == '-' or node == '-' or node == '+':
+#                 if key == 'status':
+#                     # result += f'{count_spaces}{node} '
+#                     result += f'{count_spaces}{val} '
+#                 elif key == 'key':
+#                     result += f'{val}: '
+#                 elif key == 'value':
+#                     result += f'{val}'
+#             # result += f'{count_spaces}{node}'
+#             # count_spaces += " "
+#     return f'{parenthesis_start}\n {result}\n{quote_spaces}{parenthesis_end}'
+
+
+def stylish(graph, replacer=' ', spaces_count=1, _deep=0):
     result = ''
     parenthesis_start = "{"
     parenthesis_end = "}"
     count_spaces = replacer * spaces_count * (_deep + 1)
     quote_spaces = replacer * spaces_count * _deep
     for node in graph:
-        if isinstance(node, list):
+        if isinstance(node, list) or isinstance(node, dict) or isinstance(node, tuple):
             result += stylish(node, replacer, spaces_count, _deep + 1)
             # result += f'\n{count_spaces}{key}: {stylish(vallue, replacer, spaces_count, _deep + 1)}
         else:
-            result += f'{{\n{count_spaces}{node}: {(node)}}}'
-    return f'{parenthesis_start}{result}\n{quote_spaces}{parenthesis_end}'
+            result += f'{count_spaces}{node}'
+            # count_spaces += " "
+    return f'{parenthesis_start}\n {result}\n{quote_spaces}{parenthesis_end}'
+
+
+# result += f'{{\n{count_spaces}{node}: {(node)}}}'
+
+
 

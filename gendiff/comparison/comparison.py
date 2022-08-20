@@ -14,6 +14,67 @@ def value_to_string(value):
 
 NoValue = object()
 
+# АЛЬТЕРНАТИВНАЯ ФУНКЦИЯ
+# def get_diff(key, obj1, obj2):
+#     val1 = value_to_string(obj1.get(key, NoValue))
+#     val2 = value_to_string(obj2.get(key, NoValue))
+#
+#     if isinstance(val1, dict) and isinstance(val2, dict):
+#         subkeys = set(sorted(val1.keys() | val2.keys()))
+#         subgraph = []
+#         for subkey in subkeys:
+#             subgraph.extend(get_diff(subkey, val1, val2))
+#
+#         return [
+#             ({'status': IDENTICAL,
+#             'key': key,
+#             'value': subgraph})
+#         ]
+#     elif isinstance(val1, dict):
+#         subgraph = []
+#         for subkey in val1.keys():
+#             subgraph.extend(get_diff(subkey, val1, val1))
+#
+#         result = [
+#             ({'status': REMOVED,
+#             'key': key,
+#             'value': subgraph}),
+#         ]
+#         if val2 is not NoValue:
+#             result.append(({'status': ADDED, 'key': key, 'value': val2}))
+#         return result
+#     elif isinstance(val2, dict):
+#         subgraph = []
+#         for subkey in val2.keys():
+#             subgraph.extend(get_diff(subkey, val2, val2))
+#
+#         result = [
+#             ({'status': ADDED,
+#             'key': key,
+#             'value': subgraph}),
+#         ]
+#         if val1 is not NoValue:
+#             result.append(({'status': REMOVED, 'key': key, 'value': val1}))
+#         return result
+#     elif val1 is NoValue:
+#         return [
+#             ({'status': ADDED,
+#             'key': key,
+#             'value': val2})
+#         ]
+#     elif val2 is NoValue:
+#         return [
+#             ({'status': REMOVED, 'key': key, 'value': val1})
+#         ]
+#
+#     if val1 == val2:
+#         return [({'status': IDENTICAL, 'key': key, 'value': val1})]
+#
+#     return [
+#         ({'status': REMOVED, 'key': key, 'value': val1}),
+#         ({'status': ADDED, 'key': key, 'value': val2})
+#     ]
+
 
 def get_diff(key, obj1, obj2):
     val1 = value_to_string(obj1.get(key, NoValue))
@@ -76,6 +137,7 @@ def get_diff_graph(obj1, obj2):
         graph.extend(get_diff(key, obj1, obj2))
 
     graph.sort()
+    print(type(graph))
 
     return graph
 
@@ -108,6 +170,7 @@ def get_diff_graph(obj1, obj2):
 
 def generate_diff(file1, file2, format='stylish'):
     graph = get_diff_graph(file1, file2)
+    print(graph)
     #formatter = FORMATTERS[format]
     print(stylish(graph))
     return stylish(graph)
