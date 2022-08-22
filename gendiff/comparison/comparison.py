@@ -136,8 +136,9 @@ def get_diff_graph(obj1, obj2):
     for key in keys:
         graph.extend(get_diff(key, obj1, obj2))
 
-    graph.sort()
-    print(type(graph))
+    res = sorted(graph, key=lambda x: x[0])
+    # graph.sort(key=lambda x: x[1])
+    print(type(res))
 
     return graph
 
