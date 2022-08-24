@@ -18,3 +18,9 @@ This is a comparison of two JSON-files:
 This is a comparison of two YAML-files:
 
 [![asciicast](https://asciinema.org/a/z6GXRTCjT4tBGLcBGriBi1PKX.svg)](https://asciinema.org/a/z6GXRTCjT4tBGLcBGriBi1PKX)
+
+This is a comparison of two big files with recursive approach:
+
+[![asciicast](https://asciinema.org/a/Qnm0IqofPxkpUl1nJ7ZvLed2E.svg)](https://asciinema.org/a/Qnm0IqofPxkpUl1nJ7ZvLed2E)
+
+

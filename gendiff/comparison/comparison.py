@@ -83,7 +83,7 @@ def get_diff(key, obj1, obj2):
     if isinstance(val1, dict) and isinstance(val2, dict):
         subkeys = set(sorted(val1.keys() | val2.keys()))
         subgraph = []
-        for subkey in subkeys:
+        for subkey in sorted(subkeys):
             subgraph.extend(get_diff(subkey, val1, val2))
 
         return [
@@ -136,9 +136,7 @@ def get_diff_graph(obj1, obj2):
     for key in keys:
         graph.extend(get_diff(key, obj1, obj2))
 
-    res = sorted(graph, key=lambda x: x[0])
-    # graph.sort(key=lambda x: x[1])
-    print(type(res))
+    graph.sort(key=lambda x: (x[1], x[0]))
 
     return graph
 
@@ -171,7 +169,6 @@ def get_diff_graph(obj1, obj2):
 
 def generate_diff(file1, file2, format='stylish'):
     graph = get_diff_graph(file1, file2)
-    print(graph)
     #formatter = FORMATTERS[format]
     print(stylish(graph))
     return stylish(graph)
