@@ -40,7 +40,6 @@
 
 def stylish(graph, replacer=' ', spaces_count=1, _deep=0):
     result = ''
-    result_start = ''
     parenthesis_start = "{"
     parenthesis_end = "}"
     count_spaces = replacer * spaces_count * (_deep + 1)
@@ -57,6 +56,3 @@ def stylish(graph, replacer=' ', spaces_count=1, _deep=0):
 
 
 # result += f'{{\n{count_spaces}{node}: {(node)}}}'
-
-
-

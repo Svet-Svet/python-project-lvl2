@@ -1,5 +1,3 @@
-# from gendiff.comparison.formatters.get_format import get_format
-from gendiff.comparison.formatters.stylish import stylish
 from gendiff.comparison.formatters.get_format import get_format
 
 ADDED = '+'
