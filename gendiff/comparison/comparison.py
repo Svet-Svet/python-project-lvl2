@@ -1,5 +1,6 @@
 # from gendiff.comparison.formatters.get_format import get_format
 from gendiff.comparison.formatters.stylish import stylish
+from gendiff.comparison.formatters.get_format import get_format
 
 ADDED = '+'
 REMOVED = '-'
@@ -169,9 +170,9 @@ def get_diff_graph(obj1, obj2):
 
 def generate_diff(file1, file2, format='stylish'):
     graph = get_diff_graph(file1, file2)
-    #formatter = FORMATTERS[format]
-    print(stylish(graph))
-    return stylish(graph)
+    # get_format(graph, format='stylish')
+    print(get_format(graph, format='stylish'))
+    return get_format(graph, format='stylish')
 
 
 # def generate_diff(file1, file2):

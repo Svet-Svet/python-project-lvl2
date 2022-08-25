@@ -1,8 +1,9 @@
-from gendiff.comparison.formatters.comparison_yaml import generate_diff_yaml
-from gendiff.comparison.formatters.comparison_json import generate_diff_json
 from gendiff.comparison.formatters.stylish import stylish
+from gendiff.comparison.formatters.plain import plain
 
 
 def get_format(tree, format):
     if format == 'stylish':
-        stylish(tree)
+        return stylish(tree)
+    elif format == 'plain':
+        return plain(tree)
