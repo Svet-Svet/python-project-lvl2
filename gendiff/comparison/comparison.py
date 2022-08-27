@@ -1,4 +1,5 @@
 from gendiff.comparison.formatters.get_format import get_format
+from gendiff.comparison.formatters.plain import plain
 
 ADDED = '+'
 REMOVED = '-'
@@ -75,7 +76,7 @@ NoValue = object()
 #     ]
 
 
-def get_diff(key, obj1, obj2):
+def get_diff(key, obj1, obj2, old_value=None):
     val1 = value_to_string(obj1.get(key, NoValue))
     val2 = value_to_string(obj2.get(key, NoValue))
 
@@ -136,6 +137,7 @@ def get_diff_graph(obj1, obj2):
         graph.extend(get_diff(key, obj1, obj2))
 
     graph.sort(key=lambda x: (x[1], x[0]))
+    print(graph)
 
     return graph
 
@@ -168,9 +170,11 @@ def get_diff_graph(obj1, obj2):
 
 def generate_diff(file1, file2, format='stylish'):
     graph = get_diff_graph(file1, file2)
-    # get_format(graph, format='stylish')
-    print(get_format(graph, format='stylish'))
-    return get_format(graph, format='stylish')
+    result = plain(graph)
+    print(result)
+    return result
+    # print(get_format(graph, format='stylish'))
+    # return get_format(graph, format='stylish')
 
 
 # def generate_diff(file1, file2):

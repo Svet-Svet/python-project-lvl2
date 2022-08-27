@@ -1,15 +1,20 @@
-def plain(graph, replacer=' ', spaces_count=1, _deep=0):
+def plain(graph, prefix_paths=None):
     result = ''
-    parenthesis_start = "{"
-    parenthesis_end = "}"
-    count_spaces = replacer * spaces_count * (_deep + 1)
-    quote_spaces = replacer * spaces_count * _deep
+    prefix_paths = prefix_paths or []
     for node in graph:
         if isinstance(node[2], list):
-            general_names_of_group = f'\n{count_spaces}{node[0]} {node[1]}: '
-            result += general_names_of_group + plain(node[2], replacer, spaces_count, _deep + 4)
-            # result += f'\n{count_spaces}{key}: {stylish(vallue, replacer, spaces_count, _deep + 1)}
+            plain(node[2], prefix_paths=prefix_paths + [node[1]])
         else:
-            result += f'\n{count_spaces}{node[0]} {node[1]}: {node[2]} '
-            # count_spaces += " "
-    return f'{parenthesis_start}{result}\n{quote_spaces}{parenthesis_end}'
+            if node[0] == ' ':
+                continue
+            elif node[0] == '-':
+                _old_value = node[2]
+                _new_value = node[0]
+                if _new_value == '+':
+                    result += f"Property '{'.'.join(prefix_paths)}' was updated. From '{_old_value}' to '{node[2]}\n'"
+                else:
+                    result += f"Property '{'.'.join(prefix_paths)}' was removed\n"
+            elif node[0] == '+':
+                result += f"Property '{'.'.join(prefix_paths)}' was added with value: {node[2]}\n"
+    print(result)
+    return result
