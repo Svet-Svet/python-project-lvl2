@@ -8,9 +8,9 @@ def plain(graph, prefix_paths=None):
             if node[0] == ' ':
                 continue
             elif node[0] == '-':
-                _old_value = node[2]
-                _new_value = node[0]
-                if _new_value == '+':
+                if len(node) == 3:
+                    _old_value = node[3]
+                    _new_value = node[2]
                     result += f"Property '{'.'.join(prefix_paths)}' was updated. From '{_old_value}' to '{node[2]}\n'"
                 else:
                     result += f"Property '{'.'.join(prefix_paths)}' was removed\n"

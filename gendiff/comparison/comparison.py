@@ -4,6 +4,7 @@ from gendiff.comparison.formatters.plain import plain
 ADDED = '+'
 REMOVED = '-'
 IDENTICAL = ' '
+CHANGED = None
 
 
 def value_to_string(value):
@@ -124,8 +125,8 @@ def get_diff(key, obj1, obj2, old_value=None):
         return [(IDENTICAL, key, val1)]
 
     return [
-        (REMOVED, key, val1),
-        (ADDED, key, val2)
+        (REMOVED, key, val1, val2),
+        (ADDED, key, val2, val1)
     ]
 
 
