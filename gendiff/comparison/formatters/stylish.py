@@ -8,7 +8,7 @@
 #     for node in graph:
 #         if isinstance(node, list):
 #             result += stylish(node, replacer, spaces_count, _deep + 1)
-#             # result += f'\n{count_spaces}{key}: {stylish(vallue, replacer, spaces_count, _deep + 1)}
+#             # result += f'\n{count_spaces}{key}: {stylish(value, replacer, spaces_count, _deep + 1)}
 #         else:
 #             for key, val in sorted(node.items()):
 #                 # if node == '-' or node == '-' or node == '+':

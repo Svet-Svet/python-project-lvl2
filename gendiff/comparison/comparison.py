@@ -1,4 +1,3 @@
-from gendiff.comparison.formatters.get_format import get_format
 from gendiff.comparison.formatters.plain import plain
 
 ADDED = '+'
@@ -77,7 +76,7 @@ NoValue = object()
 #     ]
 
 
-def get_diff(key, obj1, obj2, old_value=None):
+def get_diff(key, obj1, obj2):
     val1 = value_to_string(obj1.get(key, NoValue))
     val2 = value_to_string(obj2.get(key, NoValue))
 
