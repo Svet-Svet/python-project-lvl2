@@ -3,7 +3,7 @@ from gendiff.comparison.formatters.plain import plain
 ADDED = '+'
 REMOVED = '-'
 IDENTICAL = ' '
-CHANGED = None
+CHANGED = '*'
 
 
 def value_to_string(value):
@@ -86,47 +86,57 @@ def get_diff(key, obj1, obj2):
         for subkey in sorted(subkeys):
             subgraph.extend(get_diff(subkey, val1, val2))
 
+        status = 'identical'
         return [
-            (IDENTICAL, key, subgraph)
+            (status, key, subgraph)
         ]
     elif isinstance(val1, dict):
         subgraph = []
         for subkey in val1.keys():
             subgraph.extend(get_diff(subkey, val1, val1))
 
+        status = "removed"
         result = [
-            (REMOVED, key, subgraph),
+            (status, key, subgraph),
         ]
         if val2 is not NoValue:
-            result.append((ADDED, key, val2))
+            status = "added"
+            result.append((status, key, val2))
         return result
     elif isinstance(val2, dict):
         subgraph = []
         for subkey in val2.keys():
             subgraph.extend(get_diff(subkey, val2, val2))
 
+        status = "added"
         result = [
-            (ADDED, key, subgraph),
+            (status, key, subgraph),
         ]
         if val1 is not NoValue:
-            result.append((REMOVED, key, val1))
+            status = "removed"
+            result.append((status, key, val1))
         return result
     elif val1 is NoValue:
+        status = "added"
         return [
-            (ADDED, key, val2)
+            (status, key, val2)
         ]
     elif val2 is NoValue:
+        status = "removed"
         return [
-            (REMOVED, key, val1)
+            (status, key, val1)
         ]
 
     if val1 == val2:
-        return [(IDENTICAL, key, val1)]
+        status = "identical"
+        return [(status, key, val1)]
 
-    return [
-        (REMOVED, key, val1, val2),
-        (ADDED, key, val2, val1)
-    ]
+    else:
+        status = "changed"
+        return [
+            (status, key, val1, val2),
+            (status, key, val2, val1)
+        ]
 
 
 def get_diff_graph(obj1, obj2):
