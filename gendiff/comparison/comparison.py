@@ -133,10 +133,7 @@ def get_diff(key, obj1, obj2):
 
     else:
         status = "changed"
-        return [
-            (status, key, val1, val2),
-            (status, key, val2, val1)
-        ]
+        return [(status, key, val1, val2)]
 
 
 def get_diff_graph(obj1, obj2):
