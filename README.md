@@ -23,4 +23,8 @@ This is a comparison of two big files with recursive approach:
 
 [![asciicast](https://asciinema.org/a/Qnm0IqofPxkpUl1nJ7ZvLed2E.svg)](https://asciinema.org/a/Qnm0IqofPxkpUl1nJ7ZvLed2E)
 
+This is a comparison of two big files with plain formatter:
+
+[![asciicast](https://asciinema.org/a/utiCdBTgWmqpqFi1pp22PC0ww.svg)](https://asciinema.org/a/utiCdBTgWmqpqFi1pp22PC0ww)
+
 
