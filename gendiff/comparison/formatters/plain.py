@@ -14,12 +14,14 @@ def plain(graph, prefix_paths=None):
                 result.append(f"Property '{'.'.join(_paths)}' was removed\n")
             elif status == "added":
                 value = complex_value(values[0])
-                result.append(f"Property '{'.'.join(_paths)}' was added with value: {value}\n")
+                result.append(f"Property '{'.'.join(_paths)}'"
+                              f" was added with value: {value}\n")
             elif status == "changed":
                 old_value = complex_value(values[0])
                 new_value = complex_value(values[1])
                 result.append(
-                    f"Property '{'.'.join(_paths)}' was updated. From {old_value} to: {new_value}\n")
+                    f"Property '{'.'.join(_paths)}'"
+                    f" was updated. From {old_value} to: {new_value}\n")
     return ''.join(result)
 
 
