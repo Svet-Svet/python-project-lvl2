@@ -13,7 +13,7 @@ This repository is my second studies project in Hexlet. This is a library for co
 This is a comparison of two JSON-files:
 
 
-[![asciicast](https://asciinema.org/a/gyyPaATYjYpAH46gSa3AtkLaQ.svg)](https://asciinema.org/a/gyyPaATYjYpAH46gSa3AtkLaQ)
+[![asciicast](https://asciinema.org/a/vMXOwSBxAi2AglCo5Rgtj7eDm.svg)](https://asciinema.org/a/vMXOwSBxAi2AglCo5Rgtj7eDm)
 
 This is a comparison of two YAML-files:
 

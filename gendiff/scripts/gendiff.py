@@ -18,7 +18,7 @@ def main():
     print(args.first_file)
     print(args.second_file)
     if os.path.splitext(args.first_file[-4:]) == 'json':
-        generate_diff_json(args.first_file, args.second_file)
+        generate_diff_json(args.first_file, args.second_file, args.format)
     else:
         generate_diff_yaml(args.first_file, args.second_file)
 
