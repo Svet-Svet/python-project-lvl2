@@ -1,5 +1,5 @@
 
-from gendiff.comparison import comparison
+from gendiff.comparison.comparison import generate_diff
 
 
-__all__ = ('comparison',)
+__all__ = ('generate_diff',)
