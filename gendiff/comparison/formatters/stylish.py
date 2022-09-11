@@ -1,5 +1,5 @@
 
-# flake8: noqa: C901
+# flake8: noqa: max-complexity: 10
 def stylish(graph, replacer=' ', spaces_count=1, _deep=0):
     result = ''
     parenthesis_start = "{"

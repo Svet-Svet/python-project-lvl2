@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 import argparse
-import os.path
 
-from gendiff.comparison.formatters.comparison_yaml import generate_diff_yaml
-from gendiff.comparison.formatters.comparison_json import generate_diff_json
+from gendiff.comparison.parser_format import generate_parser_format
 
 
 def main():
@@ -12,15 +10,14 @@ def main():
                                                  ' and shows a difference.')
     parser.add_argument('first_file', )
     parser.add_argument('second_file', )
-    parser.add_argument('-f', '--format', help='set format of output', )
+    parser.add_argument(
+        '-f', '--format',
+        help='set format of output',
+        default='stylish',
+    )
 
     args = parser.parse_args()
-    print(args.first_file)
-    print(args.second_file)
-    if os.path.splitext(args.first_file[-4:]) == 'json':
-        generate_diff_json(args.first_file, args.second_file, args.format)
-    else:
-        generate_diff_yaml(args.first_file, args.second_file)
+    generate_parser_format(args.first_file, args.second_file, args.format)
 
 
 if __name__ == '__main__':
