@@ -1,5 +1,5 @@
 
-from gendiff.comparison.comparison import generate_diff
+from gendiff.comparison.parser_format import generate_parser_format
 
 
-__all__ = ('generate_diff',)
+__all__ = ('generate_parser_format',)
