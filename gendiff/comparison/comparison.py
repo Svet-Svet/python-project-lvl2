@@ -15,6 +15,7 @@ def value_to_string(value):
 NoValue = object()
 
 
+# flake8: noqa: C901
 def get_diff(key, obj1, obj2):
     val1 = value_to_string(obj1.get(key, NoValue))
     val2 = value_to_string(obj2.get(key, NoValue))
@@ -56,7 +57,7 @@ def get_diff(key, obj1, obj2):
         return add_note("added", key, val2)
     elif val2 is NoValue:
         return add_note("removed", key, val1)
-    if val1 == val2:
+    elif val1 == val2:
         return add_note('identical', key, val1)
     else:
         status = "changed"

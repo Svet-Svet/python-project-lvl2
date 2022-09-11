@@ -1,4 +1,5 @@
 
+# flake8: noqa: C901
 def stylish(graph, replacer=' ', spaces_count=1, _deep=0):
     result = ''
     parenthesis_start = "{"
