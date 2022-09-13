@@ -32,4 +32,5 @@ def stylish(graph, replacer=' ', spaces_count=1, _deep=0):
         elif node[0] == "changed":
             result += f'\n{count_spaces}- {node[1]}: {node[2]} '
             result += f'\n{count_spaces}+ {node[1]}: {node[3]} '
-    return f'{parenthesis_start}{result}\n{quote_spaces}{parenthesis_end}'
+    return f'{parenthesis_start}{result}\n{quote_spaces}{parenthesis_end}'.replace('True', 'true')\
+        .replace('False', 'false').replace('None', 'null')

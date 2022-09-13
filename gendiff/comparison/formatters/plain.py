@@ -22,7 +22,8 @@ def plain(graph, prefix_paths=None):
                 result.append(
                     f"Property '{'.'.join(_paths)}'"
                     f" was updated. From {old_value} to: {new_value}\n")
-    return ''.join(result)
+    return ''.join(result).replace('True', 'true')\
+        .replace('False', 'false').replace('None', 'null')
 
 
 def complex_value(value_):
