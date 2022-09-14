@@ -1,9 +1,25 @@
+<div id="header" align="center">
+  <img src="https://media.giphy.com/media/vzO0Vc8b2VBLi/giphy.gif" width="100" alt=""/>
+</div>
+
+<div id="badges">
+  <a href="https://www.linkedin.com/in/sviatoslav-ivanov-66a490182/">
+    <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/>
+  </a>
+</div>
+
+<img src="https://komarev.com/ghpvc/?username=Svet-Svet&style=flat-square&color=blue" alt=""/>
+
+<h1>
+  Gendiff
+  <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="30px"/>
+</h1>
+
+
 ### Hexlet tests and linter status:
 [![Maintainability](https://api.codeclimate.com/v1/badges/085cd76c08914e156852/maintainability)](https://codeclimate.com/github/Svet-Svet/python-project-lvl2/maintainability)
 [![Actions Status](https://github.com/Svet-Svet/python-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/Svet-Svet/python-project-lvl2/actions)
 [![Github Actions Status](https://github.com/Svet-Svet/python-project-lvl2/workflows/Python%20CI/badge.svg)](https://github.com/Svet-Svet/python-project-lvl2/actions)
-
-# python-project-lvl2
 
 This repository is my second studies project in Hexlet. This is a library for comparing two JSON-files or two YAML-files.
 

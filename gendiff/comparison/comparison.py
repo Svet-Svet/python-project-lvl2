@@ -85,6 +85,7 @@ def generate_diff(file1, file2, formatter='stylish'):
     file1_open = generate_parser_format(file1)
     file2_open = generate_parser_format(file2)
     graph = get_diff_graph(file1_open, file2_open)
+    print(graph)
     result = get_format(graph, formatter)
     print(result)
     return result
