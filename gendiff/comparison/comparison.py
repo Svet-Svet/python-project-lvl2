@@ -35,6 +35,13 @@ def get_diff(key, obj1, obj2):
         status = "changed"
         return [(status, key, subgraph, val2)]
 
+    elif isinstance(val2, dict) and val1 is not NoValue:
+        subgraph = []
+        for subkey in val2.keys():
+            subgraph.extend(get_diff(subkey, val2, val2))
+        status = "changed"
+        return [(status, key, subgraph, val1)]
+
     elif isinstance(val1, dict):
         subgraph = []
         for subkey in val1.keys():
