@@ -11,19 +11,21 @@ def plain(graph, prefix_paths=None):
             result.extend(plain(values[0], prefix_paths=_paths))
         else:
             if status == "removed":
-                result.append(f"Property '{'.'.join(_paths)}' was removed\n")
+                result.append(f"Property '{'.'.join(_paths)}' was removed")
             elif status == "added":
                 value = complex_value(values[0])
                 result.append(f"Property '{'.'.join(_paths)}'"
-                              f" was added with value: {value}\n")
+                              f" was added with value: {value}")
             elif status == "changed":
                 old_value = complex_value(values[0])
                 new_value = complex_value(values[1])
                 result.append(
                     f"Property '{'.'.join(_paths)}'"
-                    f" was updated. From {old_value} to {new_value}\n")
-    return ''.join(result).replace('True', 'true')\
+                    f" was updated. From {old_value} to {new_value}")
+    if len(prefix_paths) == 0:
+        return '\n'.join(result).replace('True', 'true')\
         .replace('False', 'false').replace('None', 'null')
+    return result
 
 
 def complex_value(value_):
