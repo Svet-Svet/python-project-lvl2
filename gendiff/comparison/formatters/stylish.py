@@ -23,6 +23,12 @@ def stylish(graph, replacer=' ', spaces_count=1, _deep=0):
                 result += old + stylish(node[2], replacer, spaces_count, _deep + 4)
                 result += new
 
+        elif node[0] == "changed" and isinstance(node[3], list):
+                old = f'\n{count_spaces}- {node[1]}: {node[2]}'
+                new = f'\n{count_spaces}+ {node[1]}: '\
+                      + stylish(node[3], replacer, spaces_count, _deep + 4)
+                result += old
+                result += new
         elif node[0] == "added":
             result += f'\n{count_spaces}+ {node[1]}: {node[2]}'
         elif node[0] == "removed":
