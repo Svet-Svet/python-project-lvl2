@@ -18,8 +18,8 @@ NoValue = object()
 
 # flake8: noqa: max-complexity: 10
 def get_diff(key, obj1, obj2):
-    val1 = value_to_string(obj1.get(key, NoValue))
-    val2 = value_to_string(obj2.get(key, NoValue))
+    val1 = obj1.get(key, NoValue)
+    val2 = obj2.get(key, NoValue)
 
     if isinstance(val1, dict) and isinstance(val2, dict):
         subkeys = set(sorted(val1.keys() | val2.keys()))
