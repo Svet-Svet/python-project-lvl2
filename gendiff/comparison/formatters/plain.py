@@ -24,7 +24,7 @@ def plain(graph, prefix_paths=None):
                     f" was updated. From {old_value} to {new_value}")
     if len(prefix_paths) == 0:
         return '\n'.join(result).replace('True', 'true')\
-        .replace('False', 'false').replace('None', 'null')
+            .replace('False', 'false').replace('None', 'null')
     return result
 
 
