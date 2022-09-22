@@ -35,13 +35,6 @@ def get_diff(key, obj1, obj2):
         status = "changed"
         return [(status, key, subgraph, val2)]
 
-    elif isinstance(val2, dict) and val1 is not NoValue:
-        subgraph = []
-        for subkey in val2.keys():
-            subgraph.extend(get_diff(subkey, val2, val2))
-        status = "changed"
-        return [(status, key, subgraph, val1)]
-
     elif isinstance(val1, dict):
         subgraph = []
         for subkey in val1.keys():
@@ -52,14 +45,13 @@ def get_diff(key, obj1, obj2):
         subgraph = []
         for subkey in val2.keys():
             subgraph.extend(get_diff(subkey, val2, val2))
-
-        status = "added"
-        result = [
-            (status, key, subgraph),
-        ]
+        result = []
         if val1 is not NoValue:
             status = "removed"
             result.append((status, key, val1))
+
+        status = "added"
+        result.append((status, key, subgraph))
         return result
     elif val1 is NoValue:
         return add_note("added", key, val2)
