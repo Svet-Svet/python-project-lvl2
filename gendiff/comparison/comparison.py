@@ -7,12 +7,6 @@ IDENTICAL = 'identical'
 CHANGED = 'changed'
 
 
-def value_to_string(value):
-    if isinstance(value, bool):
-        return str(value).lower()
-    return value
-
-
 NoValue = object()
 
 
