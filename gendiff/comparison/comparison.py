@@ -1,10 +1,10 @@
 from gendiff.comparison.get_format import get_format
 from gendiff.comparison.parser_format import generate_parser_format
 
-ADDED = '+'
-REMOVED = '-'
-IDENTICAL = ' '
-CHANGED = '*'
+ADDED = 'added'
+REMOVED = 'removed'
+IDENTICAL = 'identical'
+CHANGED = 'changed'
 
 
 def value_to_string(value):
@@ -26,27 +26,27 @@ def get_diff(key, obj1, obj2):
         subgraph = []
         for subkey in sorted(subkeys):
             subgraph.extend(get_diff(subkey, val1, val2))
-        return add_note("identical", key, subgraph)
+        return add_note(IDENTICAL, key, subgraph)
 
     elif isinstance(val1, dict) and val2 is not NoValue:
         subgraph = []
         for subkey in val1.keys():
             subgraph.extend(get_diff(subkey, val1, val1))
-        status = "changed"
+        status = CHANGED
         return [(status, key, subgraph, val2)]
 
     elif isinstance(val2, dict) and val1 is not NoValue:
         subgraph = []
         for subkey in val2.keys():
             subgraph.extend(get_diff(subkey, val2, val2))
-        status = "changed"
+        status = CHANGED
         return [(status, key, val1, subgraph)]
 
     elif isinstance(val1, dict):
         subgraph = []
         for subkey in val1.keys():
             subgraph.extend(get_diff(subkey, val1, val1))
-        return add_note("removed", key, subgraph)
+        return add_note(REMOVED, key, subgraph)
 
     elif isinstance(val2, dict):
         subgraph = []
@@ -54,20 +54,20 @@ def get_diff(key, obj1, obj2):
             subgraph.extend(get_diff(subkey, val2, val2))
         result = []
         if val1 is not NoValue:
-            status = "removed"
+            status = REMOVED
             result.append((status, key, val1))
 
-        status = "added"
+        status = ADDED
         result.append((status, key, subgraph))
         return result
     elif val1 is NoValue:
-        return add_note("added", key, val2)
+        return add_note(ADDED, key, val2)
     elif val2 is NoValue:
-        return add_note("removed", key, val1)
+        return add_note(REMOVED, key, val1)
     elif val1 == val2:
-        return add_note('identical', key, val1)
+        return add_note(IDENTICAL, key, val1)
     else:
-        status = "changed"
+        status = CHANGED
         return [(status, key, val1, val2)]
 
 
