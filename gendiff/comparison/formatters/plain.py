@@ -1,5 +1,10 @@
 import json
 
+ADDED = 'added'
+REMOVED = 'removed'
+IDENTICAL = 'identical'
+CHANGED = 'changed'
+
 
 # flake8: noqa: max-complexity: 10
 def plain(graph, prefix_paths=None):
@@ -8,16 +13,16 @@ def plain(graph, prefix_paths=None):
     for node in graph:
         status, key, *values = node
         _paths = prefix_paths + [key]
-        if isinstance(values[0], list) and status == "identical":
+        if isinstance(values[0], list) and status == IDENTICAL:
             result.extend(plain(values[0], prefix_paths=_paths))
         else:
-            if status == "removed":
+            if status == REMOVED:
                 result.append(f"Property '{'.'.join(_paths)}' was removed")
-            elif status == "added":
+            elif status == ADDED:
                 value = complex_value(values[0])
                 result.append(f"Property '{'.'.join(_paths)}'"
                               f" was added with value: {value}")
-            elif status == "changed":
+            elif status == CHANGED:
                 old_value = complex_value(values[0])
                 new_value = complex_value(values[1])
                 result.append(

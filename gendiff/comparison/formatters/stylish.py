@@ -1,41 +1,48 @@
+ADDED = 'added'
+REMOVED = 'removed'
+IDENTICAL = 'identical'
+CHANGED = 'changed'
+
 
 # flake8: noqa: max-complexity: 10
-def stylish(graph, replacer=' ', spaces_count=1, _deep=0):
+def stylish(graph, _deep=0):
+    replacer = ' '
     result = ''
     parenthesis_start = "{"
     parenthesis_end = "}"
-    count_spaces = replacer * spaces_count * (_deep + 2)
-    quote_spaces = replacer * spaces_count * _deep
+    count_spaces = replacer * (_deep + 2)
+    quote_spaces = replacer * _deep
     for node in graph:
+        status = node[0]
         if isinstance(node[2], list):
-            if node[0] == "added":
+            if status == ADDED:
                 keys = f'\n{count_spaces}+ {node[1]}: '
-                result += keys + stylish(node[2], replacer, spaces_count, _deep + 4)
-            elif node[0] == "removed":
+                result += keys + stylish(node[2], _deep + 4)
+            elif status == REMOVED:
                 keys = f'\n{count_spaces}- {node[1]}: '
-                result += keys + stylish(node[2], replacer, spaces_count, _deep + 4)
-            elif node[0] == "identical":
+                result += keys + stylish(node[2], _deep + 4)
+            elif status == IDENTICAL:
                 keys = f'\n{count_spaces}  {node[1]}: '
-                result += keys + stylish(node[2], replacer, spaces_count, _deep + 4)
-            elif node[0] == "changed":
+                result += keys + stylish(node[2], _deep + 4)
+            elif status == CHANGED:
                 old = f'\n{count_spaces}- {node[1]}: '
                 new = f'\n{count_spaces}+ {node[1]}: {node[3]}'
-                result += old + stylish(node[2], replacer, spaces_count, _deep + 4)
+                result += old + stylish(node[2], _deep + 4)
                 result += new
 
-        elif node[0] == "changed" and isinstance(node[3], list):
+        elif status == CHANGED and isinstance(node[3], list):
                 old = f'\n{count_spaces}- {node[1]}: {node[2]}'
                 new = f'\n{count_spaces}+ {node[1]}: '\
-                      + stylish(node[3], replacer, spaces_count, _deep + 4)
+                      + stylish(node[3], _deep + 4)
                 result += old
                 result += new
-        elif node[0] == "added":
+        elif status == ADDED:
             result += f'\n{count_spaces}+ {node[1]}: {node[2]}'
-        elif node[0] == "removed":
+        elif status == REMOVED:
             result += f'\n{count_spaces}- {node[1]}: {node[2]}'
-        elif node[0] == "identical":
+        elif status == IDENTICAL:
             result += f'\n{count_spaces}  {node[1]}: {node[2]}'
-        elif node[0] == "changed":
+        elif status == CHANGED:
             result += f'\n{count_spaces}- {node[1]}: {node[2]}'
             result += f'\n{count_spaces}+ {node[1]}: {node[3]}'
     return f'{parenthesis_start}{result}\n{quote_spaces}{parenthesis_end}'.replace('True', 'true')\
