@@ -19,22 +19,21 @@ def plain(graph, prefix_paths=None):
             if status == REMOVED:
                 result.append(f"Property '{'.'.join(_paths)}' was removed")
             elif status == ADDED:
-                value = complex_value(values[0])
+                value = format_value(values[0])
                 result.append(f"Property '{'.'.join(_paths)}'"
                               f" was added with value: {value}")
             elif status == CHANGED:
-                old_value = complex_value(values[0])
-                new_value = complex_value(values[1])
+                old_value = format_value(values[0])
+                new_value = format_value(values[1])
                 result.append(
                     f"Property '{'.'.join(_paths)}'"
                     f" was updated. From {old_value} to {new_value}")
     if len(prefix_paths) == 0:
-        return '\n'.join(result).replace('True', 'true')\
-            .replace('False', 'false').replace('None', 'null')
+        return '\n'.join(result)
     return result
 
 
-def complex_value(value_):
+def format_value(value_):
     if isinstance(value_, bool) or value_ is None or isinstance(value_, int):
         new_value = json.dumps(value_)
         return f"{new_value}"
