@@ -22,4 +22,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    # print(list(map(abs_path, sys.argv[1:0])))

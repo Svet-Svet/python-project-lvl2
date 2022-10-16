@@ -22,11 +22,11 @@ def get_diff(key, obj1, obj2):
     val2 = obj2.get(key, NoValue)
 
     if isinstance(val1, dict) and isinstance(val2, dict):
-        subkeys = set(sorted(val1.keys() | val2.keys()))
+        subkeys = set((val1.keys() | val2.keys()))
         subgraph = []
         for subkey in sorted(subkeys):
             subgraph.extend(get_diff(subkey, val1, val2))
-        return add_note(IDENTICAL, key, subgraph)
+        return add_node(IDENTICAL, key, subgraph)
 
     elif isinstance(val1, dict) and val2 is not NoValue:
         subgraph = []
@@ -46,7 +46,7 @@ def get_diff(key, obj1, obj2):
         subgraph = []
         for subkey in val1.keys():
             subgraph.extend(get_diff(subkey, val1, val1))
-        return add_note(REMOVED, key, subgraph)
+        return add_node(REMOVED, key, subgraph)
 
     elif isinstance(val2, dict):
         subgraph = []
@@ -61,17 +61,17 @@ def get_diff(key, obj1, obj2):
         result.append((status, key, subgraph))
         return result
     elif val1 is NoValue:
-        return add_note(ADDED, key, val2)
+        return add_node(ADDED, key, val2)
     elif val2 is NoValue:
-        return add_note(REMOVED, key, val1)
+        return add_node(REMOVED, key, val1)
     elif val1 == val2:
-        return add_note(IDENTICAL, key, val1)
+        return add_node(IDENTICAL, key, val1)
     else:
         status = CHANGED
         return [(status, key, val1, val2)]
 
 
-def add_note(status, key, val):
+def add_node(status, key, val):
     result = [(status, key, val)]
     return result
 
