@@ -13,11 +13,3 @@ FORMATTERS = {
 def get_format(tree, formats='stylish'):
     formatter = FORMATTERS[formats]
     return formatter(tree)
-
-# def get_format(tree, formatter):
-#     if formatter == 'stylish':
-#         return stylish(tree)
-#     elif formatter == 'plain':
-#         return plain(tree)
-#     elif formatter == 'json':
-#         return json_format(tree)
