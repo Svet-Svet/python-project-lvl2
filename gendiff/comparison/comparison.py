@@ -54,15 +54,29 @@ def get_diff(key, obj1, obj2):
         status = ADDED
         result.append((status, key, subgraph))
         return result
-    elif val1 is NoValue:
-        return add_node(ADDED, key, val2)
-    elif val2 is NoValue:
-        return add_node(REMOVED, key, val1)
-    elif val1 == val2:
-        return add_node(IDENTICAL, key, val1)
+    else:
+        add_border_value(val1, key, val2)
+    # else: val1 is NoValue:
+    #     return add_node(ADDED, key, val2)
+    # elif val2 is NoValue:
+    #     return add_node(REMOVED, key, val1)
+    # elif val1 == val2:
+    #     return add_node(IDENTICAL, key, val1)
+    # else:
+    #     status = CHANGED
+    #     return [(status, key, val1, val2)]
+
+
+def add_border_value(value1, key, value2):
+    if value1 is NoValue:
+        return add_node(ADDED, key, value2)
+    elif value2 is NoValue:
+        return add_node(REMOVED, key, value1)
+    elif value1 == value2:
+        return add_node(IDENTICAL, key, value1)
     else:
         status = CHANGED
-        return [(status, key, val1, val2)]
+        return [(status, key, value1, value2)]
 
 
 def add_node(status, key, val):

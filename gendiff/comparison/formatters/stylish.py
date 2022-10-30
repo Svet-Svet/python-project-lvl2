@@ -12,8 +12,7 @@ def stylish(graph, _deep=0):
     parenthesis_end = "}"
     count_spaces = replacer * (_deep + 2)
     quote_spaces = replacer * _deep
-    for node_general in graph:
-        node = is_bool(node_general)
+    for node in graph:
         status, key, *values = node
         if isinstance(node[2], list):
             if status == ADDED:
@@ -30,7 +29,6 @@ def stylish(graph, _deep=0):
                 new = f'\n{count_spaces}+ {node[1]}: {node[3]}'
                 result += old + stylish(node[2], _deep + 4)
                 result += new
-
         elif status == CHANGED and isinstance(node[3], list):
                 old = f'\n{count_spaces}- {node[1]}: {node[2]}'
                 new = f'\n{count_spaces}+ {node[1]}: '\
@@ -46,13 +44,19 @@ def stylish(graph, _deep=0):
         elif status == CHANGED:
             result += f'\n{count_spaces}- {node[1]}: {node[2]}'
             result += f'\n{count_spaces}+ {node[1]}: {node[3]}'
-    return f'{parenthesis_start}{result}\n{quote_spaces}{parenthesis_end}'
+    return f'{parenthesis_start}{result}\n{quote_spaces}{parenthesis_end}'.replace('False', 'false').\
+        replace('False', 'false').replace('None', 'null')
 
 
-def is_bool(item):
-    if type(item) is bool:
-        return str(item).lower()
-    elif item is None:
-        return 'null'
-    else:
-        return item
+# def is_bool(item):
+#     for i in item[3]:
+#         print(i)
+#         if isinstance(i, list):
+#             return item
+#
+#         if type(i) is bool:
+#             return str(i).lower()
+#         elif i is None:
+#             return 'null'
+#         else:
+#             return item
