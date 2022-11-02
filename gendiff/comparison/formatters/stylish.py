@@ -18,17 +18,18 @@ def stylish(graph, _deep=0):
         if isinstance(node[2], list):
             if status == ADDED:
                 keys = f'\n{count_spaces}+ {node[1]}: '
-                result += keys + stylish(node[2], _deep + 4)
+                result += keys + stylish(value, _deep + 4)
             elif status == REMOVED:
                 keys = f'\n{count_spaces}- {node[1]}: '
-                result += keys + stylish(node[2], _deep + 4)
+                result += keys + stylish(value, _deep + 4)
             elif status == IDENTICAL:
                 keys = f'\n{count_spaces}  {node[1]}: '
-                result += keys + stylish(node[2], _deep + 4)
+                result += keys + stylish(value, _deep + 4)
             elif status == CHANGED:
+                value_new = is_bool(node[3])
                 old = f'\n{count_spaces}- {node[1]}: '
-                new = f'\n{count_spaces}+ {node[1]}: {is_bool(node[3])}'
-                result += old + stylish(node[2], _deep + 4)
+                new = f'\n{count_spaces}+ {node[1]}: {value_new}'
+                result += old + stylish(value, _deep + 4)
                 result += new
         elif status == CHANGED and isinstance(node[3], list):
                 old = f'\n{count_spaces}- {node[1]}: {value}'
@@ -43,8 +44,9 @@ def stylish(graph, _deep=0):
         elif status == IDENTICAL:
             result += f'\n{count_spaces}  {node[1]}: {value}'
         elif status == CHANGED:
+            value_new = is_bool(node[3])
             result += f'\n{count_spaces}- {node[1]}: {value}'
-            result += f'\n{count_spaces}+ {node[1]}: {is_bool(node[3])}'
+            result += f'\n{count_spaces}+ {node[1]}: {value_new}'
     return f'{parenthesis_start}{result}\n{quote_spaces}{parenthesis_end}'
 
 
