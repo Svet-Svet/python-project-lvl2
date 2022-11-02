@@ -27,7 +27,7 @@ def stylish(graph, _deep=0):
                 result += keys + stylish(node[2], _deep + 4)
             elif status == CHANGED:
                 old = f'\n{count_spaces}- {node[1]}: '
-                new = f'\n{count_spaces}+ {node[1]}: {node[3]}'
+                new = f'\n{count_spaces}+ {node[1]}: {is_bool(node[3])}'
                 result += old + stylish(node[2], _deep + 4)
                 result += new
         elif status == CHANGED and isinstance(node[3], list):
@@ -44,7 +44,7 @@ def stylish(graph, _deep=0):
             result += f'\n{count_spaces}  {node[1]}: {value}'
         elif status == CHANGED:
             result += f'\n{count_spaces}- {node[1]}: {value}'
-            result += f'\n{count_spaces}+ {node[1]}: {node[3]}'
+            result += f'\n{count_spaces}+ {node[1]}: {is_bool(node[3])}'
     return f'{parenthesis_start}{result}\n{quote_spaces}{parenthesis_end}'
 
 
