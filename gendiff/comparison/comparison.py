@@ -54,7 +54,12 @@ def get_diff(key, obj1, obj2):
         status = ADDED
         result.append((status, key, subgraph))
         return result
-    elif val1 is NoValue:
+    else:
+        return get_diff_for_another_cases(val1, val2, key)
+
+
+def get_diff_for_another_cases(val1, val2, key):
+    if val1 is NoValue:
         return add_node(ADDED, key, val2)
     elif val2 is NoValue:
         return add_node(REMOVED, key, val1)
