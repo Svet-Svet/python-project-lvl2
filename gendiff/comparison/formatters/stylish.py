@@ -7,7 +7,7 @@ CHANGED = 'changed'
 # flake8: noqa: max-complexity: 10
 def stylish(graph, _deep=0):
     replacer = ' '
-    result = ''
+    result = []
     parenthesis_start = "{"
     parenthesis_end = "}"
     count_spaces = replacer * (_deep + 2)
@@ -18,35 +18,36 @@ def stylish(graph, _deep=0):
         if isinstance(node[2], list):
             if status == ADDED:
                 keys = f'\n{count_spaces}+ {node[1]}: '
-                result += keys + stylish(value, _deep + 4)
+                result.append(keys + stylish(value, _deep + 4))
             elif status == REMOVED:
                 keys = f'\n{count_spaces}- {node[1]}: '
-                result += keys + stylish(value, _deep + 4)
+                result.append(keys + stylish(value, _deep + 4))
             elif status == IDENTICAL:
                 keys = f'\n{count_spaces}  {node[1]}: '
-                result += keys + stylish(value, _deep + 4)
+                result.append(keys + stylish(value, _deep + 4))
             elif status == CHANGED:
                 value_new = is_bool(node[3])
                 old = f'\n{count_spaces}- {node[1]}: '
                 new = f'\n{count_spaces}+ {node[1]}: {value_new}'
-                result += old + stylish(value, _deep + 4)
-                result += new
+                result.append(old + stylish(value, _deep + 4))
+                result.append(new)
         elif status == CHANGED and isinstance(node[3], list):
                 old = f'\n{count_spaces}- {node[1]}: {value}'
                 new = f'\n{count_spaces}+ {node[1]}: '\
                       + stylish(node[3], _deep + 4)
-                result += old
-                result += new
+                result.append(old)
+                result.append(new)
         elif status == ADDED:
-            result += f'\n{count_spaces}+ {node[1]}: {value}'
+            result.append(f'\n{count_spaces}+ {node[1]}: {value}')
         elif status == REMOVED:
-            result += f'\n{count_spaces}- {node[1]}: {value}'
+            result.append(f'\n{count_spaces}- {node[1]}: {value}')
         elif status == IDENTICAL:
-            result += f'\n{count_spaces}  {node[1]}: {value}'
+            result.append(f'\n{count_spaces}  {node[1]}: {value}')
         elif status == CHANGED:
             value_new = is_bool(node[3])
-            result += f'\n{count_spaces}- {node[1]}: {value}'
-            result += f'\n{count_spaces}+ {node[1]}: {value_new}'
+            result.append(f'\n{count_spaces}- {node[1]}: {value}')
+            result.append(f'\n{count_spaces}+ {node[1]}: {value_new}')
+    result = ''.join(result)
     return f'{parenthesis_start}{result}\n{quote_spaces}{parenthesis_end}'
 
 
