@@ -14,6 +14,7 @@ def stylish(graph, _deep=0):
     quote_spaces = replacer * _deep
     for node in graph:
         status, key, *values = node
+        value = is_bool(node[2])
         if isinstance(node[2], list):
             if status == ADDED:
                 keys = f'\n{count_spaces}+ {node[1]}: '
@@ -30,33 +31,27 @@ def stylish(graph, _deep=0):
                 result += old + stylish(node[2], _deep + 4)
                 result += new
         elif status == CHANGED and isinstance(node[3], list):
-                old = f'\n{count_spaces}- {node[1]}: {node[2]}'
+                old = f'\n{count_spaces}- {node[1]}: {value}'
                 new = f'\n{count_spaces}+ {node[1]}: '\
                       + stylish(node[3], _deep + 4)
                 result += old
                 result += new
         elif status == ADDED:
-            result += f'\n{count_spaces}+ {node[1]}: {node[2]}'
+            result += f'\n{count_spaces}+ {node[1]}: {value}'
         elif status == REMOVED:
-            result += f'\n{count_spaces}- {node[1]}: {node[2]}'
+            result += f'\n{count_spaces}- {node[1]}: {value}'
         elif status == IDENTICAL:
-            result += f'\n{count_spaces}  {node[1]}: {node[2]}'
+            result += f'\n{count_spaces}  {node[1]}: {value}'
         elif status == CHANGED:
-            result += f'\n{count_spaces}- {node[1]}: {node[2]}'
+            result += f'\n{count_spaces}- {node[1]}: {value}'
             result += f'\n{count_spaces}+ {node[1]}: {node[3]}'
-    return f'{parenthesis_start}{result}\n{quote_spaces}{parenthesis_end}'.replace('False', 'false').\
-        replace('False', 'false').replace('None', 'null')
+    return f'{parenthesis_start}{result}\n{quote_spaces}{parenthesis_end}'
 
 
-# def is_bool(item):
-#     for i in item[3]:
-#         print(i)
-#         if isinstance(i, list):
-#             return item
-#
-#         if type(i) is bool:
-#             return str(i).lower()
-#         elif i is None:
-#             return 'null'
-#         else:
-#             return item
+def is_bool(item):
+    if type(item) is bool:
+        return str(item).lower()
+    elif item is None:
+        return 'null'
+    else:
+        return item
