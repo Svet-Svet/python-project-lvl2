@@ -10,6 +10,6 @@ FORMATTERS = {
 }
 
 
-def get_format(tree, formats='stylish'):
-    formatter = FORMATTERS[formats]
+def get_formatted_output(tree, format_output='stylish'):
+    formatter = FORMATTERS[format_output]
     return formatter(tree)

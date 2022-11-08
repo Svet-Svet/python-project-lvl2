@@ -14,7 +14,7 @@ def stylish(graph, _deep=0):
     quote_spaces = replacer * _deep
     for node in graph:
         status, key, *values = node
-        value = is_bool(node[2])
+        value = check_bool(node[2])
         if isinstance(node[2], list):
             if status == ADDED:
                 keys = f'\n{count_spaces}+ {node[1]}: '
@@ -26,7 +26,7 @@ def stylish(graph, _deep=0):
                 keys = f'\n{count_spaces}  {node[1]}: '
                 result.append(keys + stylish(value, _deep + 4))
             elif status == CHANGED:
-                value_new = is_bool(node[3])
+                value_new = check_bool(node[3])
                 old = f'\n{count_spaces}- {node[1]}: '
                 new = f'\n{count_spaces}+ {node[1]}: {value_new}'
                 result.append(old + stylish(value, _deep + 4))
@@ -44,14 +44,14 @@ def stylish(graph, _deep=0):
         elif status == IDENTICAL:
             result.append(f'\n{count_spaces}  {node[1]}: {value}')
         elif status == CHANGED:
-            value_new = is_bool(node[3])
+            value_new = check_bool(node[3])
             result.append(f'\n{count_spaces}- {node[1]}: {value}')
             result.append(f'\n{count_spaces}+ {node[1]}: {value_new}')
     result = ''.join(result)
     return f'{parenthesis_start}{result}\n{quote_spaces}{parenthesis_end}'
 
 
-def is_bool(item):
+def check_bool(item):
     if type(item) is bool:
         return str(item).lower()
     elif item is None:
