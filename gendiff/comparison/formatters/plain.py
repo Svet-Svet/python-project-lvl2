@@ -1,9 +1,5 @@
+from gendiff.comparison.constants_status import ADDED, REMOVED, IDENTICAL, CHANGED
 import json
-
-ADDED = 'added'
-REMOVED = 'removed'
-IDENTICAL = 'identical'
-CHANGED = 'changed'
 
 
 # flake8: noqa: max-complexity: 10

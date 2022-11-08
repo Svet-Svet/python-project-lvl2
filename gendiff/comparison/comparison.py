@@ -1,10 +1,6 @@
 from gendiff.comparison.get_format import get_formatted_output
 from gendiff.comparison.parser_format import open_file
-
-ADDED = 'added'
-REMOVED = 'removed'
-IDENTICAL = 'identical'
-CHANGED = 'changed'
+from gendiff.comparison.constants_status import ADDED, REMOVED, IDENTICAL, CHANGED
 
 
 NoValue = object()
