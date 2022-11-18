@@ -5,6 +5,7 @@ CHANGED = 'changed'
 NESTED = 'nested'
 
 
+# flake8: noqa: max-complexity: 10
 def stylish(graph, _deep=0):
     if isinstance(graph, bool):
         return str(graph).lower()

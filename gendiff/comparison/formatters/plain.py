@@ -8,6 +8,7 @@ CHANGED = 'changed'
 NESTED = 'nested'
 
 
+# flake8: noqa: max-complexity: 10
 def plain(graph, prefix_paths=None):
     result = []
     prefix_paths = prefix_paths or []

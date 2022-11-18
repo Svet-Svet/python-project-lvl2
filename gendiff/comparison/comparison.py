@@ -40,7 +40,6 @@ def get_diff(obj1: dict, obj2: dict) -> list:
 def get_diff_graph(obj1, obj2):
     graph = get_diff(obj1, obj2)
     graph.sort(key=lambda x: (x[1], x[0]))
-    print(graph)
     return graph
 
 
