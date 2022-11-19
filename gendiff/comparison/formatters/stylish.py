@@ -34,9 +34,9 @@ def stylish(graph, _deep=0):
         value1 = stylish(values[0], _deep + 1)
 
         if status == ADDED:
-            result.append(f'{count_spaces}- {key}: {value1}')
-        elif status == REMOVED:
             result.append(f'{count_spaces}+ {key}: {value1}')
+        elif status == REMOVED:
+            result.append(f'{count_spaces}- {key}: {value1}')
         elif status == IDENTICAL:
             result.append(f'{count_spaces}  {key}: {value1}')
         elif status == CHANGED:
