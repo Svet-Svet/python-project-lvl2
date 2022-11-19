@@ -31,7 +31,7 @@ def get_diff(obj1: dict, obj2: dict) -> list:
             graph.append((IDENTICAL, key, val1))
 
         else:
-            graph.append((CHANGED, key, val2, val1))
+            graph.append((CHANGED, key, val1, val2))
 
     graph.sort(key=lambda n: (n[1], n[0]))
     return graph
