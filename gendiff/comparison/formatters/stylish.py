@@ -34,16 +34,16 @@ def stylish(graph, _deep=0):
         value1 = stylish(values[0], _deep + 1)
 
         if status == ADDED:
-            result.append(f'{count_spaces}+ {key}: {value1}')
-        elif status == REMOVED:
             result.append(f'{count_spaces}- {key}: {value1}')
+        elif status == REMOVED:
+            result.append(f'{count_spaces}+ {key}: {value1}')
         elif status == IDENTICAL:
             result.append(f'{count_spaces}  {key}: {value1}')
         elif status == CHANGED:
             value2 = stylish(values[1])
             result.append(f'{count_spaces}- {key}: {value1}')
             result.append(f'{count_spaces}+ {key}: {value2}')
-        elif status == 'nested':
+        elif status == NESTED:
             result.append(f'{count_spaces}  {key}: {value1}')
 
     result = '\n'.join(result)
