@@ -19,10 +19,10 @@ def get_diff(obj1: dict, obj2: dict) -> list:
         val2 = obj2.get(key, NoValue)
 
         if key not in obj1.keys():
-            graph.append((REMOVED, key, val2))
+            graph.append((ADDED, key, val2))
 
         elif key not in obj2.keys():
-            graph.append((ADDED, key, val1))
+            graph.append((REMOVED, key, val1))
 
         elif isinstance(val1, dict) and isinstance(val2, dict):
             graph.append((NESTED, key, get_diff(val1, val2)))
