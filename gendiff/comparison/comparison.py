@@ -24,11 +24,11 @@ def get_diff(obj1: dict, obj2: dict) -> list:
         elif key not in obj2:
             graph.append((REMOVED, key, val1))
 
+        elif val1 == val2:
+            graph.append((IDENTICAL, key, val2))
+
         elif isinstance(val1, dict) and isinstance(val2, dict):
             graph.append((NESTED, key, get_diff(val1, val2)))
-
-        elif val1 == val2:
-            graph.append((IDENTICAL, key, val1))
 
         else:
             graph.append((CHANGED, key, val1, val2))
