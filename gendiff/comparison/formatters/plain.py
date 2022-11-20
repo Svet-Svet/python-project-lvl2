@@ -1,11 +1,5 @@
 import json
-
-
-ADDED = 'added'
-REMOVED = 'removed'
-IDENTICAL = 'identical'
-CHANGED = 'changed'
-NESTED = 'nested'
+from gendiff.comparison.get_tree import ADDED, REMOVED, CHANGED, NESTED
 
 
 # flake8: noqa: max-complexity: 10
