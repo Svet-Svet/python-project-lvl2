@@ -40,7 +40,7 @@ def stylish(graph, _deep=0):
         elif status == IDENTICAL:
             result.append(f'{count_spaces}  {key}: {value1}')
         elif status == CHANGED:
-            value2 = stylish(values[1])
+            value2 = stylish(values[1], _deep + 1)
             result.append(f'{count_spaces}- {key}: {value1}')
             result.append(f'{count_spaces}+ {key}: {value2}')
         elif status == NESTED:
