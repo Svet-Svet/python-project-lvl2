@@ -2,6 +2,7 @@
 import argparse
 
 from gendiff import generate_diff
+from gendiff.comparison.formatters.get_format import DEFAULT_FORMAT
 
 
 def main():
@@ -13,7 +14,7 @@ def main():
     parser.add_argument(
         '-f', '--format',
         help='set format of output',
-        default='stylish',
+        default=DEFAULT_FORMAT,
     )
 
     args = parser.parse_args()

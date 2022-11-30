@@ -1,19 +1,27 @@
-from gendiff.comparison.formatters.stylish import stylish
-from gendiff.comparison.formatters.plain import plain
-from gendiff.comparison.formatters.json import json_format
-
-from tests.fixtures.result_json import result_json
-from tests.fixtures.result_stylish import result_stylish
-from tests.fixtures.result_plain import result_plain
+from gendiff.comparison.comparison import generate_diff
+import pytest
+import os
 
 
-def test_json():
-    assert json_format("tests/fixtures/file1.json") == result_json()
+TEST_PATH = os.path.dirname(os.path.abspath(__file__))
+FIXTURE_PATH = f'{TEST_PATH}/fixtures/'
 
 
-def test_stylish():
-    assert stylish("tests/fixtures/file_deep1.json", "tests/fixtures/file_deep2.json") == result_stylish()
+def generate_test_path(path):
+    return f'{FIXTURE_PATH}{path}'
 
 
-def test_plain():
-    assert plain("tests/fixtures/file_deep1.json", "tests/fixtures/file_deep2.json") == result_plain()
+@pytest.mark.parametrize('file1, file2, format_name, result', [
+    ('file1.json', 'file2.json', 'json', 'result_json.txt'),
+    ('file_deep1.json', 'file_deep2.json', 'stylish', 'result_stylish.txt'),
+    ('file_deep1.yml', 'file_deep2.yml', 'stylish', 'result_stylish.txt'),
+    ('file_deep1.json', 'file_deep2.json', 'plain', 'result_plain.txt'),
+    ('file_deep1.yml', 'file_deep2.yml', 'plain', 'result_plain.txt')
+])
+def test_generate_diff(file1, file2, format_name, result):
+    file1_path = generate_test_path(file1)
+    file2_path = generate_test_path(file2)
+    result_path = generate_test_path(result)
+    with open(result_path) as file:
+        expected = file.read()
+        assert generate_diff(file1_path, file2_path, format_name) == expected

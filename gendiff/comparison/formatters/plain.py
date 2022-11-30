@@ -1,5 +1,5 @@
 import json
-from gendiff.comparison.get_tree import ADDED, REMOVED, CHANGED, NESTED
+from gendiff.comparison.get_graph import ADDED, REMOVED, CHANGED, NESTED
 
 
 # flake8: noqa: max-complexity: 10

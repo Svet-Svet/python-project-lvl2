@@ -1,4 +1,4 @@
-result_stylish = '''{
+{
     common: {
       + follow: false
         setting1: Value 1
@@ -41,4 +41,4 @@ result_stylish = '''{
         }
         fee: 100500
     }
-}'''
+}
