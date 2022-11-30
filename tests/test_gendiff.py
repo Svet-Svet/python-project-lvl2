@@ -12,7 +12,6 @@ def generate_test_path(path):
 
 
 @pytest.mark.parametrize('file1, file2, format_name, result', [
-    ('file1.json', 'file2.json', 'json', 'result_json.txt'),
     ('file_deep1.json', 'file_deep2.json', 'stylish', 'result_stylish.txt'),
     ('file_deep1.yml', 'file_deep2.yml', 'stylish', 'result_stylish.txt'),
     ('file_deep1.json', 'file_deep2.json', 'plain', 'result_plain.txt'),
