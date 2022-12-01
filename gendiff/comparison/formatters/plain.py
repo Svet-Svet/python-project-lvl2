@@ -1,5 +1,5 @@
 import json
-from gendiff.comparison.get_graph import ADDED, REMOVED, CHANGED, NESTED
+from gendiff.comparison.graph import ADDED, REMOVED, CHANGED, NESTED
 
 
 # flake8: noqa: max-complexity: 10
@@ -30,10 +30,10 @@ def plain(graph, prefix_paths=None):
 
 
 def format_value(value_):
-    if isinstance(value_, bool) or value_ is None or isinstance(value_, int):
+    if isinstance(value_, dict):
+        return '[complex value]'
+    elif isinstance(value_, str):
+        return f"'{value_}'"
+    else:
         new_value = json.dumps(value_)
         return f"{new_value}"
-    elif isinstance(value_, dict):
-        return '[complex value]'
-    else:
-        return f"'{value_}'"

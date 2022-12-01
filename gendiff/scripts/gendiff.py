@@ -2,7 +2,7 @@
 import argparse
 
 from gendiff import generate_diff
-from gendiff.comparison.formatters.get_format import DEFAULT_FORMAT
+from gendiff.comparison.formatters.formats import DEFAULT_FORMAT
 
 
 def main():
