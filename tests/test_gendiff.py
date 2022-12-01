@@ -2,13 +2,11 @@ from gendiff.comparison.comparison import generate_diff
 import pytest
 import os
 
-
 TEST_PATH = os.path.dirname(os.path.abspath(__file__))
-FIXTURE_PATH = os.path.join(TEST_PATH, '/Users/mac/python-project-lvl2/python-project-lvl2/tests/fixtures/')
 
 
 def generate_test_path(path):
-    return os.path.join(FIXTURE_PATH, path)
+    return os.path.join(TEST_PATH, 'fixtures', path)
 
 
 @pytest.mark.parametrize('file1, file2, format_name, result', [
